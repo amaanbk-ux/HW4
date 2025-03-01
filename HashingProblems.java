@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Amaan Khan / 001 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -33,16 +33,17 @@ class HashingProblems {
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
+        double match = 0;
+        double sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (map.get(array[i]) != null) {
+                sum += map.get(array[i]);
+                match++;
+            }
+        }
+        return match == 0 ? 0.0 / 0.0 : sum / match;
+    }
 
-         return 0.0 / 0.0;
-  }
 
 
     /*
@@ -56,11 +57,13 @@ class HashingProblems {
     
       ArrayList<String> result = new ArrayList<>();
 
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
+
+      for (int k : map.keySet()) {
+          if (k % 2 != 0) {
+              result.add(map.get(k));
+          }
+      }
+
 
 
       return result;
@@ -105,12 +108,20 @@ class HashingProblems {
    */
 
   public int twoSums(int[] numbers, int k) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int number : numbers){
+            set.add(number);
+        }
+      int result = 0;
+        for (int number: numbers){
+            int difference = number - k;
+            if (set.contains(difference)){
+                result += 1;
+            }
+        }
 
-      /*
-       * ADD YOUR CODE HERE
-       */
-
-      return -1;
+      return result;
   }
 
 } /* end class HashingProblems */
+
